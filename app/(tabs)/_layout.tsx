@@ -1,6 +1,8 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
 import { Platform } from 'react-native';
+import { FontAwesome, Feather, Ionicons } from '@expo/vector-icons';
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { HapticTab } from '@/components/HapticTab';
 import { IconSymbol } from '@/components/ui/IconSymbol';
@@ -10,35 +12,57 @@ import { useColorScheme } from '@/hooks/useColorScheme';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
+  const insets = useSafeAreaInsets();
+
 
   return (
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         headerShown: false,
+        
         tabBarButton: HapticTab,
         tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
-          },
-          default: {},
-        }),
+        tabBarStyle: {
+          position: "absolute",
+          height: 65 + insets.bottom, // Ensure tab bar height is adjusted
+        },
       }}>
       <Tabs.Screen
-        name="index"
+        name="home"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          title: '',
+          tabBarIcon: ({ color }) => <Ionicons name="home-outline" size={24} color="lightblue" />,
+        }}
+      />
+      
+      <Tabs.Screen
+        name="search"
+        options={{
+          title: '',
+          tabBarIcon: ({ color }) => <Ionicons name="search-outline" size={24} color="lightblue" />,
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="add"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          title: '',
+          tabBarIcon: ({ color }) => <Ionicons name="add-circle-outline" size={24} color="lightblue" />,
         }}
+      />
+      <Tabs.Screen
+        name="reels"
+        options={{
+          title: '',
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="film.fill" color="lightblue" />,
+        }}
+      />
+      <Tabs.Screen
+      name='profile'
+      options={{
+        title: '',
+        tabBarIcon: ({ color }) => <Ionicons name="person-outline" size={24} color="lightblue" />,
+      }}
       />
     </Tabs>
   );

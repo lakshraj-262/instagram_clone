@@ -13,6 +13,14 @@ const MAPPING = {
   'paperplane.fill': 'send',
   'chevron.left.forwardslash.chevron.right': 'code',
   'chevron.right': 'chevron-right',
+  'play.rectangle.fill': 'movie',  // SF Symbol → Material Icon
+  'film.fill': 'video-library',    // Alternative for Reels
+  'film': 'video-library',         // Alternative for Reels
+  'person.fill': 'person',
+  'person': 'person-outline',
+  'person.2.fill': 'people',
+  'person.2': 'people-outline',
+  'reels': 'slideshow',
 } as Partial<
   Record<
     import('expo-symbols').SymbolViewProps['name'],
